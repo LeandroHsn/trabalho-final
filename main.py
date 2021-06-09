@@ -29,7 +29,7 @@ class MyWindow(QMainWindow):
         
         # Criando os menus
         self.menuArquivo = self.barraDeMenu.addMenu("Arquivo")
-        self.menuTransformacao = self.barraDeMenu.addMenu("Transformação") #não muda isso comédia
+        self.menuTransformacao = self.barraDeMenu.addMenu("Transformações") 
         self.menuSobre = self.barraDeMenu.addMenu("Sobre")
 
         # Criando as actions menuArquivo
@@ -47,8 +47,6 @@ class MyWindow(QMainWindow):
         self.efeito_contour.triggered.connect(self.transform_me_countour)        
         self.efeito_emboss = self.menuTransformacao.addAction("EMBOSS")
         self.efeito_emboss.triggered.connect(self.transform_me_emboss)
-        self.informacao_imagem = self.menuTransformacao.addAction("Adicionar esteganografia")
-        self.informacao_imagem.triggered.connect(self.add_esteganografia)
 
         # Criando as actions do sobre
         self.sobre = self.menuSobre.addAction("Sobre")
@@ -168,9 +166,6 @@ class MyWindow(QMainWindow):
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
         self.pixmap2 = self.pixmap2.scaled(250, 250, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
-
-    def add_esteganografia(self):
-        return print(1)
 
     def changeValue(self, value = ""):
         self.entrada = self.endereco1
