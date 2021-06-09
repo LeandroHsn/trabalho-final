@@ -29,7 +29,7 @@ class MyWindow(QMainWindow):
         
         # Criando os menus
         self.menuArquivo = self.barraDeMenu.addMenu("Arquivo")
-        self.menuTransformacao = self.barraDeMenu.addMenu("Transformação")
+        self.menuTransformacao = self.barraDeMenu.addMenu("Transformações")
         self.menuSobre = self.barraDeMenu.addMenu("Sobre")
 
         # Criando as actions menuArquivo
