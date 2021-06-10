@@ -15,8 +15,8 @@ class MyWindow(QMainWindow):
         self.x = 640
         self.y = 480
         self.setMinimumSize(QSize(self.x, self.y))
-        self.setWindowTitle("Dialog - untiled")
-        #self.setWindowIcon(QtGui.QIcon("imagens/logo.png"))
+        self.setWindowTitle("Editos de imagens - EDIFOTO")
+        self.setWindowIcon(QtGui.QIcon("logo/logo.png"))
         self.wid = QWidget(self)
         self.setCentralWidget(self.wid)
         self.layout = QGridLayout()
@@ -51,9 +51,12 @@ class MyWindow(QMainWindow):
         # Criando as actions do sobre
         self.sobre = self.menuSobre.addAction("Sobre")
         self.sobre = self.sobre.triggered.connect(self.exibir_mensagem)
+        
+        self.sobreImagem = self.menuSobre.addAction("Sobre imagem...")
+        self.sobreImagem = self.sobreImagem.triggered.connect(self.exibir_sobre_imagem)
 
         # Criação de QLabel        
-        self.texto = QLabel("Processamento Digital de Imagens", self)
+        self.texto = QLabel("Processamento Digital de Imagens (IFTM) - Trabalho final", self)
         self.texto.adjustSize()
         self.largura = self.texto.frameGeometry().width()
         self.altura = self.texto.frameGeometry().height()
@@ -80,15 +83,6 @@ class MyWindow(QMainWindow):
         self.imagem2.setPixmap(self.pixmap2)
         self.imagem2.setAlignment(QtCore.Qt.AlignCenter)
 
-        # Criando botões
-        self.b1 = QtWidgets.QPushButton(self)
-        self.b1.setText("Espelhar")
-        self.b1.clicked.connect(self.espelhar)
-
-        self.b2 = QtWidgets.QPushButton(self)
-        self.b2.setText("Girar")
-        self.b2.clicked.connect(self.girar)
-
         self.mySlider = QSlider(Qt.Horizontal, self)
         self.mySlider.valueChanged[int].connect(self.changeValue)
         
@@ -96,13 +90,11 @@ class MyWindow(QMainWindow):
         self.layout.addWidget(self.texto, 0, 0, 1, 2)
         self.layout.addWidget(self.texto2, 3, 0, 1, 2)
         self.layout.addWidget(self.mySlider, 4, 0, 1, 2)
-        self.layout.addWidget(self.b1, 2, 0)        
-        self.layout.addWidget(self.b2, 2, 1)
         self.layout.addWidget(self.imagem1, 1, 0)
         self.layout.addWidget(self.imagem2, 1, 1)
-        self.layout.setRowStretch(0,0)
-        self.layout.setRowStretch(1,1)
-        self.layout.setRowStretch(2,0)      
+        self.layout.setRowStretch(0,1)
+        self.layout.setRowStretch(2,1)
+   
     
     # Método de ação dos botões do menu
 
@@ -110,9 +102,17 @@ class MyWindow(QMainWindow):
         self.msg = QMessageBox()
         self.msg.setIcon(QMessageBox.Information)
         self.msg.setWindowTitle("Detralhes sobre")
-        self.msg.setText("Desenvolvido por Leandro Henrick Silva Nunes")
+        self.msg.setText("Desenvolvido por Leandro Henrick Silva Nunes e Isaque da Silva Silveira")
+        self.msg.setInformativeText("Aplicativo com diversos filtros.\nItuiutaba - MG\nProjeto concluído em 22/06/2021")
+        self.msg.exec_()     
+
+    def exibir_sobre_imagem(self):
+        self.msg = QMessageBox()
+        self.msg.setIcon(QMessageBox.Information)
+        self.msg.setWindowTitle("Detralhes sobre a imagem")
+        self.msg.setText("Todos os detalhes sobre a imagem:")
         self.msg.setInformativeText("Aplicativo para uso dos filtros: 'Countour', 'Emboss' e 'Find Edges'.\nItuiutaba - MG\nProjeto concluído em 10/05/2021")
-        self.msg.exec_()        
+        self.msg.exec_()         
 
     def open_file(self):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self, caption='Open image', 
