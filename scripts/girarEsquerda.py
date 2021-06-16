@@ -19,7 +19,7 @@ saida = open (sys.argv[2], "w+")
 # Aplicando os filtros
 
 original = Image.open(entradaPrincipal)
-girar = original.transpose(Image.ROTATE_90)
+girar = original.transpose(Image.ROTATE_180)
 
 # Fechar os arquivos de entrada e de saída
 

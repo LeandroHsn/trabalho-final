@@ -11,7 +11,6 @@ class MyWindow(QMainWindow):
         self.initUI()       
 
     def setup_main_window(self):
-        self.valor = False
         self.x = 640
         self.y = 480
         self.setMinimumSize(QSize(self.x, self.y))
@@ -30,6 +29,7 @@ class MyWindow(QMainWindow):
         # Criando os menus
         self.menuArquivo = self.barraDeMenu.addMenu("Arquivo")
         self.menuTransformacao = self.barraDeMenu.addMenu("Transformações") 
+        self.menuManipulacao = self.barraDeMenu.addMenu("Manipulação") 
         self.menuSobre = self.barraDeMenu.addMenu("Sobre")
 
         # Criando as actions menuArquivo
@@ -56,9 +56,23 @@ class MyWindow(QMainWindow):
         self.efeito_blur = self.menuTransformacao.addAction("EDGE_ENHANCE_MORE")
         self.efeito_blur.triggered.connect(self.transform_me_edge_enhance_more)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("Filto Negativo")
+        self.efeito_blur = self.menuTransformacao.addAction("FILTRO NEGATIVO")
         self.efeito_blur.triggered.connect(self.transform_me_negativo)
         self.menuTransformacao.addSeparator()
+
+        # Criando menu manipulação
+
+        self.girarImg = self.menuManipulacao.addAction("GIRAR IMAGEM 90º")
+        self.girarImg.triggered.connect(self.girarDireita)
+        self.menuManipulacao.addSeparator()
+        
+        self.girarImg = self.menuManipulacao.addAction("GIRAR IMAGEM 180º")
+        self.girarImg.triggered.connect(self.girarEsquerda)
+        self.menuManipulacao.addSeparator()        
+
+        self.espelharImg = self.menuManipulacao.addAction("ESPELHAR")
+        self.espelharImg.triggered.connect(self.espelhar)
+        self.menuManipulacao.addSeparator()  
 
         # Criando as actions do sobre
         self.sobre = self.menuSobre.addAction("Sobre")
@@ -137,42 +151,39 @@ class MyWindow(QMainWindow):
         self.pixmap1 = self.pixmap1.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
         self.imagem1.setPixmap(self.pixmap1)
 
-    def girar (self):
-        if (self.valor == False):
-            self.entrada = self.endereco1
-            self.saida = 'imagens/arquivo_novo.jpg'
-            self.script = '.\girar.py'
-            self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
-            subprocess.run(self.program, shell=True)  
-        else:
-            self.entrada = 'imagens/arquivo_novo.jpg'
-            self.saida = 'imagens/arquivo_novo1.jpg'
-            self.script = '.\girar.py'
-            self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
-            subprocess.run(self.program, shell=True)
-        
-        self.valor = True        
+    def girarDireita (self):
 
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\girarDireita.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True) 
+             
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def girarEsquerda (self):
+        
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\girarEsquerda.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True) 
+             
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
         self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def espelhar (self):
-        if (self.valor == False):
-            self.entrada = self.endereco1
-            self.saida = 'imagens/arquivo_novo.jpg'
-            self.script = '.\espelhar.py'
-            self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
-            subprocess.run(self.program, shell=True)  
-        else:
-            self.entrada = 'imagens/arquivo_novo.jpg'
-            self.saida = 'imagens/arquivo_novo1.jpg'
-            self.script = '.\espelhar.py'
-            self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
-            subprocess.run(self.program, shell=True)
-        
-        self.valor = True        
+
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\espelhar.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)      
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
@@ -182,7 +193,7 @@ class MyWindow(QMainWindow):
     def changeValue(self, value = ""):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.png'
-        self.script = '.\efeito_transparencia.py'
+        self.script = 'scripts\efeito_transparencia.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida + ' \"' + str(value) 
         subprocess.run(self.program, shell=True)
         
@@ -195,7 +206,7 @@ class MyWindow(QMainWindow):
     def transform_me_countour(self):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
-        self.script = '.\efeito_countour.py'
+        self.script = 'scripts\efeito_countour.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
@@ -207,7 +218,7 @@ class MyWindow(QMainWindow):
     def transform_me_emboss(self):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
-        self.script = '.\efeito_emboss.py'
+        self.script = 'scripts\efeito_emboss.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
@@ -219,7 +230,7 @@ class MyWindow(QMainWindow):
     def transform_me_findEdges(self):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
-        self.script = '.\efeito_find_edges.py'
+        self.script = 'scripts\efeito_find_edges.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
@@ -231,7 +242,7 @@ class MyWindow(QMainWindow):
     def transform_me_blur(self):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
-        self.script = '.\efeito_BLUR.py'
+        self.script = 'scripts\efeito_BLUR.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
@@ -243,7 +254,7 @@ class MyWindow(QMainWindow):
     def transform_me_edge_enhance_more(self):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
-        self.script = '.\efeito_edge_enhance_more.py'
+        self.script = 'scripts\efeito_edge_enhance_more.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
@@ -255,7 +266,7 @@ class MyWindow(QMainWindow):
     def transform_me_negativo(self):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
-        self.script = '.\efeito_negativo.py'
+        self.script = 'scripts\efeito_negativo.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
