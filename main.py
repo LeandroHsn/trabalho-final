@@ -42,11 +42,23 @@ class MyWindow(QMainWindow):
 
         # Criando as actions menuTransformações
         self.efeito_find = self.menuTransformacao.addAction("FIND EDGES")
-        self.efeito_find.triggered.connect(self.transform_me_findEdges)        
+        self.efeito_find.triggered.connect(self.transform_me_findEdges)
+        self.menuTransformacao.addSeparator()        
         self.efeito_contour = self.menuTransformacao.addAction("CONTOUR")
-        self.efeito_contour.triggered.connect(self.transform_me_countour)        
+        self.efeito_contour.triggered.connect(self.transform_me_countour)
+        self.menuTransformacao.addSeparator()         
         self.efeito_emboss = self.menuTransformacao.addAction("EMBOSS")
         self.efeito_emboss.triggered.connect(self.transform_me_emboss)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("BLUR")
+        self.efeito_blur.triggered.connect(self.transform_me_blur)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("EDGE_ENHANCE_MORE")
+        self.efeito_blur.triggered.connect(self.transform_me_edge_enhance_more)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("Filto Negativo")
+        self.efeito_blur.triggered.connect(self.transform_me_negativo)
+        self.menuTransformacao.addSeparator()
 
         # Criando as actions do sobre
         self.sobre = self.menuSobre.addAction("Sobre")
@@ -208,6 +220,42 @@ class MyWindow(QMainWindow):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
         self.script = '.\efeito_find_edges.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_blur(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = '.\efeito_BLUR.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_edge_enhance_more(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = '.\efeito_edge_enhance_more.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_negativo(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = '.\efeito_negativo.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
