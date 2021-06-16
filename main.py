@@ -43,7 +43,7 @@ class MyWindow(QMainWindow):
         self.salvar.triggered.connect(self.salvarComo)
         self.salvar.setShortcut("Ctrl+s")
 
-        # Criando as actions menuTransformações
+# Criando as actions menuTransformações
         self.efeito_find = self.menuTransformacao.addAction("FIND EDGES")
         self.efeito_find.triggered.connect(self.transform_me_findEdges)
         self.menuTransformacao.addSeparator()        
@@ -56,8 +56,23 @@ class MyWindow(QMainWindow):
         self.efeito_blur = self.menuTransformacao.addAction("BLUR")
         self.efeito_blur.triggered.connect(self.transform_me_blur)
         self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("EDGE_ENHANCE")
+        self.efeito_blur.triggered.connect(self.transform_me_edge_enhance)
+        self.menuTransformacao.addSeparator()
         self.efeito_blur = self.menuTransformacao.addAction("EDGE_ENHANCE_MORE")
         self.efeito_blur.triggered.connect(self.transform_me_edge_enhance_more)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("SHARPEN")
+        self.efeito_blur.triggered.connect(self.transform_me_sharpen)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("SMOOTH")
+        self.efeito_blur.triggered.connect(self.transform_me_smooth)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("SMOOTH_MORE")
+        self.efeito_blur.triggered.connect(self.transform_me_smooth_more)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("DETAIL")
+        self.efeito_blur.triggered.connect(self.transform_me_detail)
         self.menuTransformacao.addSeparator()
         self.efeito_blur = self.menuTransformacao.addAction("FILTRO NEGATIVO")
         self.efeito_blur.triggered.connect(self.transform_me_negativo)
@@ -277,6 +292,66 @@ class MyWindow(QMainWindow):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
         self.script = 'scripts\efeito_negativo.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_detail(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\efeito_detail.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_edge_enhance(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\efeito_edge_enhance.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_sharpen(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\efeito_sharpen.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_smooth(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\efeito_smooth.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_smooth_more(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\efeito_smooth_more.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
