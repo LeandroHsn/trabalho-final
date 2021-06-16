@@ -34,11 +34,14 @@ class MyWindow(QMainWindow):
 
         # Criando as actions menuArquivo
         self.opcaoabrir = self.menuArquivo.addAction("Abrir")
+        self.salvar = self.menuArquivo.addAction("Salvar como")
         self.opcaoFechar = self.menuArquivo.addAction("Fechar")
         self.opcaoabrir.triggered.connect(self.open_file)
         self.opcaoabrir.setShortcut("Ctrl+A")
         self.opcaoFechar.triggered.connect(self.close)
         self.opcaoFechar.setShortcut("Alt+F4")
+        self.salvar.triggered.connect(self.salvarComo)
+        self.salvar.setShortcut("Ctrl+s")
 
         # Criando as actions menuTransformações
         self.efeito_find = self.menuTransformacao.addAction("FIND EDGES")
@@ -150,6 +153,13 @@ class MyWindow(QMainWindow):
         self.pixmap1 = QtGui.QPixmap(self.endereco1)
         self.pixmap1 = self.pixmap1.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
         self.imagem1.setPixmap(self.pixmap1)
+
+    def salvarComo(self):
+
+        self.arquivo = QtWidgets.QFileDialog.getSaveFileName()[0]
+
+        with open (self.arquivo + '.png', 'w') as a:
+            a.write(self.endereco1)
 
     def girarDireita (self):
 
