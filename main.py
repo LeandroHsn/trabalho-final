@@ -44,7 +44,13 @@ class MyWindow(QMainWindow):
         self.salvar.setShortcut("Ctrl+s")
 
 # Criando as actions menuTransformações
-        self.efeito_find = self.menuTransformacao.addAction("FIND EDGES")
+        self.efeito_blur = self.menuTransformacao.addAction("FILTRO CINZA ")
+        self.efeito_blur.triggered.connect(self.transform_me_cinza)
+        self.menuTransformacao.addSeparator()
+        self.efeito_blur = self.menuTransformacao.addAction("FILTRO NEGATIVO")
+        self.efeito_blur.triggered.connect(self.transform_me_negativo)
+        self.menuTransformacao.addSeparator()
+        self.efeito_find = self.menuTransformacao.addAction("FIND_EDGES")
         self.efeito_find.triggered.connect(self.transform_me_findEdges)
         self.menuTransformacao.addSeparator()        
         self.efeito_contour = self.menuTransformacao.addAction("CONTOUR")
@@ -56,26 +62,32 @@ class MyWindow(QMainWindow):
         self.efeito_blur = self.menuTransformacao.addAction("BLUR")
         self.efeito_blur.triggered.connect(self.transform_me_blur)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("EDGE_ENHANCE")
-        self.efeito_blur.triggered.connect(self.transform_me_edge_enhance)
+        self.efeito_edge_enhance = self.menuTransformacao.addAction("EDGE_ENHANCE")
+        self.efeito_edge_enhance.triggered.connect(self.transform_me_edge_enhance)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("EDGE_ENHANCE_MORE")
-        self.efeito_blur.triggered.connect(self.transform_me_edge_enhance_more)
+        self.efeito_edge_enhance_more = self.menuTransformacao.addAction("EDGE_ENHANCE_MORE")
+        self.efeito_edge_enhance_more.triggered.connect(self.transform_me_edge_enhance_more)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("SHARPEN")
-        self.efeito_blur.triggered.connect(self.transform_me_sharpen)
+        self.efeito_sharpen = self.menuTransformacao.addAction("SHARPEN")
+        self.efeito_sharpen.triggered.connect(self.transform_me_sharpen)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("SMOOTH")
-        self.efeito_blur.triggered.connect(self.transform_me_smooth)
+        self.efeito_smooth = self.menuTransformacao.addAction("SMOOTH")
+        self.efeito_smooth.triggered.connect(self.transform_me_smooth)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("SMOOTH_MORE")
-        self.efeito_blur.triggered.connect(self.transform_me_smooth_more)
+        self.efeito_smooth_more = self.menuTransformacao.addAction("SMOOTH_MORE")
+        self.efeito_smooth_more.triggered.connect(self.transform_me_smooth_more)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("DETAIL")
-        self.efeito_blur.triggered.connect(self.transform_me_detail)
+        self.efeito_detail = self.menuTransformacao.addAction("DETAIL")
+        self.efeito_detail.triggered.connect(self.transform_me_detail)
         self.menuTransformacao.addSeparator()
-        self.efeito_blur = self.menuTransformacao.addAction("FILTRO NEGATIVO")
-        self.efeito_blur.triggered.connect(self.transform_me_negativo)
+        self.efeito_detectar1 = self.menuTransformacao.addAction("DETECTAR ESTILO BORDA 1")
+        self.efeito_detectar1.triggered.connect(self.transform_me_deteccao_borda_1)
+        self.menuTransformacao.addSeparator()
+        self.efeito_detectar2 = self.menuTransformacao.addAction("DETECTAR ESTILO BORDA 2")
+        self.efeito_detectar2.triggered.connect(self.transform_me_deteccao_borda_2)
+        self.menuTransformacao.addSeparator()
+        self.efeito_detectar3 = self.menuTransformacao.addAction("DETECTAR ESTILO BORDA 3")
+        self.efeito_detectar3.triggered.connect(self.transform_me_deteccao_borda_3)
         self.menuTransformacao.addSeparator()
 
         # Criando menu manipulação
@@ -288,18 +300,6 @@ class MyWindow(QMainWindow):
         self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
-    def transform_me_negativo(self):
-        self.entrada = self.endereco1
-        self.saida = 'imagens/arquivo_novo.jpg'
-        self.script = 'scripts\efeito_negativo.py'
-        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
-        subprocess.run(self.program, shell=True)
-
-        self.endereco2 = self.saida
-        self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
-        self.imagem2.setPixmap(self.pixmap2)
-
     def transform_me_detail(self):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
@@ -352,6 +352,66 @@ class MyWindow(QMainWindow):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
         self.script = 'scripts\efeito_smooth_more.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_cinza(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\efeito_cinza.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_negativo(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\efeito_negativo.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_deteccao_borda_1(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\deteccao_1.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_deteccao_borda_2(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\deteccao_2.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_deteccao_borda_3(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\deteccao_3.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
