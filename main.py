@@ -89,6 +89,22 @@ class MyWindow(QMainWindow):
         self.efeito_detectar3 = self.menuTransformacao.addAction("DETECTAR ESTILO BORDA 3")
         self.efeito_detectar3.triggered.connect(self.transform_me_deteccao_borda_3)
         self.menuTransformacao.addSeparator()
+        self.efeito_camada_R = self.menuTransformacao.addAction("CAMADA_R")
+        self.efeito_camada_R.triggered.connect(self.transform_me_camada_R)
+        self.menuTransformacao.addSeparator()
+        self.efeito_camada_G = self.menuTransformacao.addAction("CAMADA_G")
+        self.efeito_camada_G.triggered.connect(self.transform_me_camada_G)
+        self.menuTransformacao.addSeparator()
+        self.efeito_camada_B = self.menuTransformacao.addAction("CAMADA_B")
+        self.efeito_camada_B.triggered.connect(self.transform_me_camada_B)
+        self.menuTransformacao.addSeparator()
+        self.efeito_camada_gamma_0p3 = self.menuTransformacao.addAction("GAMMA_0.3")
+        self.efeito_camada_gamma_0p3.triggered.connect(self.transform_me_gamma_0p3)
+        self.menuTransformacao.addSeparator()
+        self.efeito_camada_gamma_1p8 = self.menuTransformacao.addAction("GAMMA_1.8")
+        self.efeito_camada_gamma_1p8.triggered.connect(self.transform_me_gamma_1p8)
+        self.menuTransformacao.addSeparator()
+
 
         # Criando menu manipulação
 
@@ -412,6 +428,66 @@ class MyWindow(QMainWindow):
         self.entrada = self.endereco1
         self.saida = 'imagens/arquivo_novo.jpg'
         self.script = 'scripts\deteccao_3.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_camada_R(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\camada_R.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_camada_G(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\camada_G.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_camada_B(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\camada_B.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_gamma_0p3(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\gamma_0p3.py'
+        self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
+        subprocess.run(self.program, shell=True)
+
+        self.endereco2 = self.saida
+        self.pixmap2 = QtGui.QPixmap(self.endereco2)
+        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap2)
+
+    def transform_me_gamma_1p8(self):
+        self.entrada = self.endereco1
+        self.saida = 'imagens/arquivo_novo.jpg'
+        self.script = 'scripts\gamma_1p8.py'
         self.program = 'python '+ self.script + ' \"' + self.entrada + '\" ' + self.saida
         subprocess.run(self.program, shell=True)
 
