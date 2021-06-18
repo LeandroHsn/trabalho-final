@@ -125,7 +125,7 @@ class MyWindow(QMainWindow):
         self.sobre = self.sobre.triggered.connect(self.exibir_mensagem)
         
         self.sobreImagem = self.menuSobre.addAction("Sobre imagem...")
-        self.sobreImagem = self.sobreImagem.triggered.connect(self.exibir_sobre_imagem)
+        self.sobreImagem = self.sobreImagem.triggered.connect(self.informacaoImagem)
 
         # Criação de QLabel        
         self.texto = QLabel("Processamento Digital de Imagens (IFTM) - Trabalho final", self)
@@ -166,7 +166,21 @@ class MyWindow(QMainWindow):
         self.layout.addWidget(self.imagem2, 1, 1)
         self.layout.setRowStretch(0,1)
         self.layout.setRowStretch(2,1)
-   
+
+
+    def informacaoImagem(self):        
+        formato = self.endereco1            
+        parts1 = formato.rpartition('.')       
+        nome = self.endereco1            
+        parts2 = nome.rpartition('/')
+        comentario = "Imagem adicionada no aplicativo EdiFoto."
+
+        self.msg = QMessageBox()
+        self.msg.setIcon(QMessageBox.Information)
+        self.msg.setWindowTitle("Detralhes sobre a imagem")
+        self.msg.setText("Detalhes sobre a sua imagem que está aberta:")
+        self.msg.setInformativeText("Nome do arquivo: " + parts2[2] + "\nFormato: " + parts1[2] + "\nComentário: " + comentario)
+        self.msg.exec_()   
     
     # Método de ação dos botões do menu
 
