@@ -141,17 +141,17 @@ class MyWindow(QMainWindow):
         self.texto2.setAlignment(QtCore.Qt.AlignCenter)   
 
         # Criando as imagens (QLabel)
-        self.imagem1 = QLabel(self)
-        self.endereco1 = 'imagens/balao.jpg'
-        self.pixmap1 = QtGui.QPixmap(self.endereco1)
-        self.pixmap1 = self.pixmap1.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
-        self.imagem1.setPixmap(self.pixmap1)
-        self.imagem1.setAlignment(QtCore.Qt.AlignCenter)    
+        #self.imagem1 = QLabel(self)
+        self.endereco1 = 'imagens/imagem_inicial.jpg'
+        #self.pixmap1 = QtGui.QPixmap(self.endereco1)
+        #self.pixmap1 = self.pixmap1.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
+        #self.imagem1.setPixmap(self.pixmap1)
+        #self.imagem1.setAlignment(QtCore.Qt.AlignCenter)    
 
         self.imagem2 = QLabel(self)
-        self.endereco2 = 'imagens/balao.jpg'
+        self.endereco2 = 'imagens/imagem_inicial.jpg'
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
         self.imagem2.setAlignment(QtCore.Qt.AlignCenter)
 
@@ -162,8 +162,8 @@ class MyWindow(QMainWindow):
         self.layout.addWidget(self.texto, 0, 0, 1, 2)
         self.layout.addWidget(self.texto2, 3, 0, 1, 2)
         self.layout.addWidget(self.mySlider, 4, 0, 1, 2)
-        self.layout.addWidget(self.imagem1, 1, 0)
-        self.layout.addWidget(self.imagem2, 1, 1)
+        #self.layout.addWidget(self.imagem1, 1, 0)
+        self.layout.addWidget(self.imagem2, 1, 0,1,2)
         self.layout.setRowStretch(0,1)
         self.layout.setRowStretch(2,1)
 
@@ -208,8 +208,8 @@ class MyWindow(QMainWindow):
         #print(fileName)
         self.endereco1 = fileName
         self.pixmap1 = QtGui.QPixmap(self.endereco1)
-        self.pixmap1 = self.pixmap1.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
-        self.imagem1.setPixmap(self.pixmap1)
+        self.pixmap1 = self.pixmap1.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
+        self.imagem2.setPixmap(self.pixmap1)
 
     def salvarComo(self):
 
@@ -228,7 +228,7 @@ class MyWindow(QMainWindow):
              
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def girarEsquerda (self):
@@ -241,7 +241,7 @@ class MyWindow(QMainWindow):
              
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def espelhar (self):
@@ -254,7 +254,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def changeValue(self, value = ""):
@@ -266,7 +266,7 @@ class MyWindow(QMainWindow):
         
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)    
 
 
@@ -279,7 +279,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_emboss(self):
@@ -291,7 +291,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)        
     
     def transform_me_findEdges(self):
@@ -303,7 +303,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_blur(self):
@@ -315,7 +315,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_edge_enhance_more(self):
@@ -327,7 +327,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_detail(self):
@@ -339,7 +339,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_edge_enhance(self):
@@ -351,7 +351,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_sharpen(self):
@@ -363,7 +363,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_smooth(self):
@@ -375,7 +375,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_smooth_more(self):
@@ -387,7 +387,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_cinza(self):
@@ -399,7 +399,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_negativo(self):
@@ -411,7 +411,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_deteccao_borda_1(self):
@@ -423,7 +423,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_deteccao_borda_2(self):
@@ -435,7 +435,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_deteccao_borda_3(self):
@@ -447,7 +447,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_camada_R(self):
@@ -459,7 +459,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_camada_G(self):
@@ -471,7 +471,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_camada_B(self):
@@ -483,7 +483,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_gamma_0p3(self):
@@ -495,7 +495,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
 
     def transform_me_gamma_1p8(self):
@@ -507,7 +507,7 @@ class MyWindow(QMainWindow):
 
         self.endereco2 = self.saida
         self.pixmap2 = QtGui.QPixmap(self.endereco2)
-        self.pixmap2 = self.pixmap2.scaled(350, 300, QtCore.Qt.KeepAspectRatio)
+        self.pixmap2 = self.pixmap2.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap2)
     
 def window():
