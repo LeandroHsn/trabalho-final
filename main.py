@@ -209,7 +209,7 @@ class MyWindow(QMainWindow):
         self.endereco1 = fileName
         self.pixmap1 = QtGui.QPixmap(self.endereco1)
         self.pixmap1 = self.pixmap1.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
-        self.imagem2.setPixmap(self.pixmap1)
+        self.imagem2.setPixmap(self.pixmap1) #teste
 
     def salvarComo(self):
 
