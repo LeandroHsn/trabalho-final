@@ -1,7 +1,7 @@
 import sys
 import subprocess
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QLabel, QApplication, QGridLayout, QMessageBox, QSlider, QWidget
+from PyQt5.QtWidgets import QFileDialog, QMainWindow, QLabel, QApplication, QGridLayout, QMessageBox, QSlider, QWidget
 from PyQt5.QtCore import QSize, Qt
 
 class MyWindow(QMainWindow):
@@ -173,13 +173,13 @@ class MyWindow(QMainWindow):
         parts1 = formato.rpartition('.')       
         nome = self.endereco1            
         parts2 = nome.rpartition('/')
-        comentario = "Imagem adicionada no aplicativo EdiFoto."
+        comentario = "Imagem adicionada no aplicativo EdiFoto"
 
         self.msg = QMessageBox()
         self.msg.setIcon(QMessageBox.Information)
         self.msg.setWindowTitle("Detralhes sobre a imagem")
         self.msg.setText("Detalhes sobre a sua imagem que está aberta:")
-        self.msg.setInformativeText("Nome do arquivo: " + parts2[2] + "\nFormato: " + parts1[2] + "\nComentário: " + comentario)
+        self.msg.setInformativeText("Nome do arquivo: " + parts2[2] + "\nFormato: " + parts1[2] + "\nComentário: " + comentario + "\nAltura: 450 \nLargura: 600")
         self.msg.exec_()   
     
     # Método de ação dos botões do menu
@@ -211,12 +211,11 @@ class MyWindow(QMainWindow):
         self.pixmap1 = self.pixmap1.scaled(450, 600, QtCore.Qt.KeepAspectRatio)
         self.imagem2.setPixmap(self.pixmap1) #teste
 
-    def salvarComo(self):
+    def salvarComo(self):  
 
-        self.arquivo = QtWidgets.QFileDialog.getSaveFileName()[0]
-
-        with open (self.arquivo + '.png', 'w') as a:
-            a.write(self.endereco1)
+        self.arquivo = QtWidgets.QFileDialog.getSaveFileName(self, 'Save file', './imagem')[0]
+        with open (self.arquivo + '.jpg', 'w') as a:
+            a.write("teste")
 
     def girarDireita (self):
 
