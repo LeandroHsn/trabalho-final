@@ -14,7 +14,7 @@ class MyWindow(QMainWindow):
         self.x = 640
         self.y = 480
         self.setMinimumSize(QSize(self.x, self.y))
-        self.setWindowTitle("Editos de imagens - EDIFOTO")
+        self.setWindowTitle("Editor de imagens - EDIFOTO")
         self.setWindowIcon(QtGui.QIcon("logo/logo.png"))
         self.wid = QWidget(self)
         self.setCentralWidget(self.wid)
@@ -198,7 +198,7 @@ class MyWindow(QMainWindow):
         self.msg.setIcon(QMessageBox.Information)
         self.msg.setWindowTitle("Detralhes sobre")
         self.msg.setText("Desenvolvido por Leandro Henrick Silva Nunes e Isaque da Silva Silveira")
-        self.msg.setInformativeText("Aplicativo com diversos filtros.\nItuiutaba - MG\nProjeto concluído em 22/06/2021")
+        self.msg.setInformativeText("Aplicativo com diversos filtros.\nItuiutaba - MG\nProjeto concluído em 22/06/2021 \nlink: https://youtu.be/DdvIekXxnjM")
         self.msg.exec_()     
 
     def exibir_sobre_imagem(self):
